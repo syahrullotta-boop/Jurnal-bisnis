@@ -2,14 +2,19 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0;url=https://script.google.com/macros/s/AKfycby9rzc99wrmpiuPyTRABg7XxsvFVg10dqWxtq1tUg8p2hJMLGjcbep0jaeekjSfHgYM/exec">
-  <title>Membuka Jurnal Bisnis...</title>
-  <script>
-    window.location.replace("https://script.google.com/macros/s/AKfycby9rzc99wrmpiuPyTRABg7XxsvFVg10dqWxtq1tUg8p2hJMLGjcbep0jaeekjSfHgYM/exec");
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jurnal Bisnis — Aplikasi Keuangan, Penjualan, dan Stok Usaha</title>
+  <meta name="description" content="Jurnal Bisnis membantu pemilik usaha mencatat penjualan, pengeluaran, stok, dan laporan usaha dengan lebih teratur.">
 </head>
 <body>
-  <p>Membuka aplikasi Jurnal Bisnis...</p>
-  <p><a href="https://script.google.com/macros/s/AKfycby9rzc99wrmpiuPyTRABg7XxsvFVg10dqWxtq1tUg8p2hJMLGjcbep0jaeekjSfHgYM/exec">Klik di sini jika aplikasi tidak terbuka</a></p>
+  <main>
+    <h1>Jurnal Bisnis</h1>
+    <p>Aplikasi untuk membantu pemilik usaha mencatat penjualan, pengeluaran, persediaan stok, dan laporan bisnis.</p>
+    <h2>Kelola catatan usaha dengan lebih teratur</h2>
+    <p>Buka aplikasi untuk mengelola catatan usaha Anda.</p>
+    <a href="https://script.google.com/macros/s/AKfycby9rzc99wrmpiuPyTRABg7XxsvFVg10dqWxtq1tUg8p2hJMLGjcbep0jaeekjSfHgYM/exec">
+      Buka Aplikasi Jurnal Bisnis
+    </a>
+  </main>
 </body>
 </html>
