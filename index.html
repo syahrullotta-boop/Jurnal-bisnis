@@ -3,18 +3,337 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jurnal Bisnis — Aplikasi Keuangan, Penjualan, dan Stok Usaha</title>
-  <meta name="description" content="Jurnal Bisnis membantu pemilik usaha mencatat penjualan, pengeluaran, stok, dan laporan usaha dengan lebih teratur.">
+  <meta name="theme-color" content="#07152b">
+  <meta name="description" content="Jurnal Bisnis membantu pemilik usaha mencatat penjualan, pengeluaran, persediaan, dan laporan bisnis dalam satu aplikasi.">
+  <meta name="application-name" content="Jurnal Bisnis">
+  <link rel="canonical" href="https://jurnalbisnis.cloud/">
+  <title>Jurnal Bisnis — Kelola Keuangan dan Stok Usaha</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --line: rgba(126, 171, 230, .2);
+      --muted: #b7c6dc;
+      --cyan: #41d7c0;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-width: 320px; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #f7faff;
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(35, 91, 208, .48), transparent 42%),
+        radial-gradient(ellipse at 85% 72%, rgba(14, 147, 177, .2), transparent 38%),
+        linear-gradient(130deg, #07152b 0%, #0b2145 52%, #061329 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .page { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      border-bottom: 1px solid rgba(185, 210, 246, .14);
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .brand-mark {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(96, 165, 250, .55);
+      border-radius: 14px;
+      background: linear-gradient(145deg, #153d83, #07152b 72%);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255,255,255,.2);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.8px;
+    }
+
+    .brand-name { font-size: 16px; font-weight: 850; letter-spacing: .3px; }
+    .brand-name span { color: var(--cyan); }
+    .brand-caption { color: #82b8e4; font-size: 9px; font-weight: 800; letter-spacing: .9px; }
+
+    .top-link {
+      color: #d7e5f7;
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .top-link:hover { color: var(--cyan); }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 630px;
+      padding-block: 64px 76px;
+    }
+
+    .hero-copy { width: min(100%, 820px); text-align: center; }
+
+    .eyebrow {
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      gap: 9px;
+      margin-inline: auto;
+      padding: 7px 12px;
+      border: 1px solid rgba(96, 165, 250, .3);
+      border-radius: 999px;
+      background: rgba(27, 73, 139, .34);
+      color: #a9d8f4;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      content: "";
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 22px auto 16px;
+      font-size: clamp(42px, 6vw, 66px);
+      line-height: 1.06;
+      letter-spacing: -2.8px;
+    }
+
+    .gradient-text {
+      color: #8be6dc;
+      background: linear-gradient(90deg, #90f0d7, #8fc5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 18px);
+    }
+
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 25px 0 28px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(9, 29, 59, .66);
+      color: #dbe8f9;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 49px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border: 1px solid rgba(142, 193, 255, .36);
+      border-radius: 12px;
+      background: linear-gradient(110deg, #2869e9, #3286f5);
+      box-shadow: 0 12px 30px rgba(28, 91, 211, .32);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(28, 91, 211, .46); }
+    .button:focus-visible, .top-link:focus-visible { outline: 3px solid #8be6dc; outline-offset: 4px; }
+    .button-arrow { font-size: 18px; line-height: 1; }
+    .secure-note { color: #9eb1cb; font-size: 11px; }
+
+    .features { padding: 5px 0 76px; }
+
+    .section-heading {
+      max-width: 660px;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(25px, 4vw, 34px);
+      letter-spacing: -1px;
+    }
+
+    .section-heading p { margin: 0; color: var(--muted); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .feature-card {
+      min-height: 155px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(9, 26, 52, .68);
+      text-align: center;
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      margin: 0 auto 13px;
+      border: 1px solid rgba(65, 215, 192, .24);
+      border-radius: 11px;
+      background: rgba(16, 103, 116, .2);
+      color: #76e4d3;
+    }
+
+    .feature-card h3 { margin: 0 0 5px; font-size: 14px; }
+    .feature-card p { margin: 0; color: #aabbd1; font-size: 12px; }
+
+    footer {
+      padding: 21px 0;
+      border-top: 1px solid rgba(185, 210, 246, .14);
+      color: #91a5c0;
+      font-size: 11px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero { min-height: 0; padding-block: 58px; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .page { width: min(100% - 32px, 1120px); }
+      .topbar { min-height: 70px; }
+      .top-link { font-size: 11px; }
+      .hero { padding-block: 42px; }
+      h1 { letter-spacing: -1.6px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { min-height: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>Jurnal Bisnis</h1>
-    <p>Aplikasi untuk membantu pemilik usaha mencatat penjualan, pengeluaran, persediaan stok, dan laporan bisnis.</p>
-    <h2>Kelola catatan usaha dengan lebih teratur</h2>
-    <p>Buka aplikasi untuk mengelola catatan usaha Anda.</p>
-    <a href="https://script.google.com/macros/s/AKfycby9rzc99wrmpiuPyTRABg7XxsvFVg10dqWxtq1tUg8p2hJMLGjcbep0jaeekjSfHgYM/exec">
-      Buka Aplikasi Jurnal Bisnis
+  <header class="page topbar">
+    <a class="brand" href="/" aria-label="Jurnal Bisnis beranda" style="text-decoration:none">
+      <span class="brand-mark" aria-hidden="true">JB</span>
+      <span>
+        <span class="brand-name">JURNAL <span>BISNIS</span></span>
+        <span class="brand-caption" style="display:block">PENCATATAN USAHA TERPADU</span>
+      </span>
     </a>
+    <a class="top-link" href="#fitur">Jelajahi fitur <span aria-hidden="true">↓</span></a>
+  </header>
+
+  <main>
+    <section class="page hero" aria-labelledby="main-title">
+      <div class="hero-copy">
+        <span class="eyebrow">Keuangan, penjualan, stok, dan laporan usaha</span>
+        <h1 id="main-title">Kelola bisnis dengan lebih <span class="gradient-text">mudah dan teratur.</span></h1>
+        <p class="intro">
+          Jurnal Bisnis adalah aplikasi pencatatan usaha untuk membantu pemilik
+          bisnis mengelola transaksi penjualan, pengeluaran, persediaan, dan
+          laporan dalam satu ruang kerja.
+        </p>
+        <ul class="feature-list" aria-label="Fitur utama">
+          <li>Catatan penjualan</li>
+          <li>Pengelolaan pengeluaran</li>
+          <li>Pemantauan persediaan</li>
+          <li>Ringkasan usaha</li>
+        </ul>
+        <div class="cta-row">
+          <a class="button" href="https://script.google.com/macros/s/AKfycby9rzc99wrmpiuPyTRABg7XxsvFVg10dqWxtq1tUg8p2hJMLGjcbep0jaeekjSfHgYM/exec">
+            Masuk ke Jurnal Bisnis <span class="button-arrow" aria-hidden="true">→</span>
+          </a>
+          <span class="secure-note">Aplikasi dibuka melalui Google Apps Script.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page features" id="fitur" aria-labelledby="features-title">
+      <div class="section-heading">
+        <h2 id="features-title">Catatan penting usaha, dalam satu tempat</h2>
+        <p>Gunakan Jurnal Bisnis untuk menata informasi operasional dan meninjau perkembangan usaha Anda.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">↗</span>
+          <h3>Penjualan</h3>
+          <p>Catat transaksi penjualan dan tinjau pemasukan bisnis.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">−</span>
+          <h3>Pengeluaran</h3>
+          <p>Susun catatan biaya operasional agar mudah ditinjau kembali.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">▦</span>
+          <h3>Persediaan</h3>
+          <p>Kelola informasi produk dan pantau catatan stok usaha.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">▤</span>
+          <h3>Laporan</h3>
+          <p>Lihat rangkuman usaha untuk membantu proses evaluasi.</p>
+        </article>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="page footer-inner">
+      <span>© 2026 Jurnal Bisnis — Pencatatan usaha terpadu.</span>
+      <span>Kelola catatan bisnis dengan lebih teratur.</span>
+    </div>
+  </footer>
 </body>
 </html>
